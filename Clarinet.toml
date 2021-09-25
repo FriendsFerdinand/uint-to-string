@@ -1,0 +1,6 @@
+[project]
+name = "test-byte"
+requirements = []
+[contracts.uint-to-string]
+path = "contracts/uint-to-string.clar"
+depends_on = []
