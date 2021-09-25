@@ -9,14 +9,17 @@ Clarinet.test({
         let wallet1 = accounts.get("wallet_1") as Account;
         let wallet2 = accounts.get("wallet_2") as Account;
 
-        let block = chain.mineBlock([
-            Tx.contractCall(
-                `uint-to-string`,
-                "uint-to-string",
-                [types.uint(0)],
-                deployerWallet.address
-            ),
-        ]);
-        console.log(block.receipts[0]);
+        for (let i = 0; i < 299; i++) {
+            let block = chain.mineBlock([
+                Tx.contractCall(
+                    `uint-to-string`,
+                    "uint-to-string",
+                    [types.uint(i)],
+                    deployerWallet.address
+                ),
+            ]);
+            assertEquals(block.receipts[0].result, `u"${i}"`);
+        }
+
     },
 });
